@@ -1,0 +1,157 @@
+{
+ "actions": [],
+ "creation": "2026-10-22 18:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "test_mode",
+  "sign_on_submit",
+  "default_device",
+  "retry_limit",
+  "tax_section",
+  "default_tax_type",
+  "zero_rate_tax_type",
+  "default_refund_reason",
+  "item_section",
+  "default_item_cls_code",
+  "default_pkg_unit",
+  "default_qty_unit",
+  "default_origin",
+  "opening_device_stock"
+ ],
+ "fields": [
+  {
+   "description": "Sign invoices on the Comstore device.",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "default": "1",
+   "description": "The device signs without sending anything to KRA. Untick for live trading.",
+   "fieldname": "test_mode",
+   "fieldtype": "Check",
+   "label": "Test Mode"
+  },
+  {
+   "default": "1",
+   "fieldname": "sign_on_submit",
+   "fieldtype": "Check",
+   "label": "Sign Invoices on Submit"
+  },
+  {
+   "fieldname": "default_device",
+   "fieldtype": "Link",
+   "label": "Default Device",
+   "options": "Comstore Device"
+  },
+  {
+   "default": "5",
+   "fieldname": "retry_limit",
+   "fieldtype": "Int",
+   "label": "Retries When the Device Is Unreachable"
+  },
+  {
+   "fieldname": "tax_section",
+   "fieldtype": "Section Break",
+   "label": "Tax"
+  },
+  {
+   "default": "B-16.00%",
+   "description": "For items with no eTIMS Tax Type and no Item Tax Template.",
+   "fieldname": "default_tax_type",
+   "fieldtype": "Select",
+   "label": "Default Tax Type",
+   "options": "A-Exempt\nB-16.00%\nC-0%\nD-Non-VAT\nE-8%"
+  },
+  {
+   "default": "A-Exempt",
+   "description": "0% can mean exempt or zero rated; say which this shop's 0% items are.",
+   "fieldname": "zero_rate_tax_type",
+   "fieldtype": "Select",
+   "label": "Tax Type for 0% Templates",
+   "options": "A-Exempt\nB-16.00%\nC-0%\nD-Non-VAT\nE-8%"
+  },
+  {
+   "default": "06 Refund",
+   "fieldname": "default_refund_reason",
+   "fieldtype": "Select",
+   "label": "Default Refund Reason",
+   "options": "01 Missing Quantity\n02 Missing Data\n03 Damaged / Wasted\n04 Raw Material\n05 Shortage\n06 Refund"
+  },
+  {
+   "fieldname": "item_section",
+   "fieldtype": "Section Break",
+   "label": "Item Registration Defaults"
+  },
+  {
+   "default": "99010000",
+   "fieldname": "default_item_cls_code",
+   "fieldtype": "Data",
+   "label": "Item Class Code"
+  },
+  {
+   "default": "BG-Bag",
+   "fieldname": "default_pkg_unit",
+   "fieldtype": "Data",
+   "label": "Package Unit"
+  },
+  {
+   "default": "U-Pieces/item [Number]",
+   "fieldname": "default_qty_unit",
+   "fieldtype": "Data",
+   "label": "Quantity Unit"
+  },
+  {
+   "default": "KE-KENYA",
+   "fieldname": "default_origin",
+   "fieldtype": "Data",
+   "label": "Country of Origin"
+  },
+  {
+   "default": "1000000",
+   "description": "The device keeps its own stock count and refuses sales past it. Each new item is given this much once.",
+   "fieldname": "opening_device_stock",
+   "fieldtype": "Int",
+   "label": "Opening Stock on the Device"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-10-22 18:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Comstore eTIMS",
+ "name": "Comstore Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

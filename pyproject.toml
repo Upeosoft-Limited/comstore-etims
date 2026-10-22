@@ -1,0 +1,32 @@
+[project]
+name = "comstore_etims"
+authors = [{ name = "Upeosoft Limited", email = "upeosoft@gmail.com" }]
+description = "Sign ERPNext sales invoices for KRA eTIMS through a Comstore Smart VSCU (FC4) device."
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "MIT" }
+dynamic = ["version"]
+# Frappe and ERPNext come from the bench; the app adds nothing else.
+dependencies = []
+
+[build-system]
+requires = ["flit_core>=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "comstore_etims"
+
+[tool.bench.frappe-dependencies]
+frappe = ">=16.0.0,<17.0.0"
+erpnext = ">=16.0.0,<17.0.0"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+ignore = ["E501", "W191", "E101"]
+
+[tool.ruff.format]
+indent-style = "tab"
