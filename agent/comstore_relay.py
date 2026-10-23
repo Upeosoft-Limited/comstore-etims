@@ -25,6 +25,9 @@ from pathlib import Path
 log = logging.getLogger("comstore_relay")
 
 API = "/api/method/comstore_etims.relay."
+# Sent on every call. Cloudflare answers urllib's default "Python-urllib/3.x"
+# with a 403, so a shop behind it (Robeez) would refuse every request.
+USER_AGENT = "comstore-relay/0.1"
 
 
 class Config:
@@ -54,6 +57,7 @@ class Config:
 def _http(method: str, url: str, headers: dict, body=None, timeout: float = 30):
 	"""(status, parsed JSON or {"message": text}). Raises OSError when nothing answered."""
 	data = json.dumps(body).encode() if body is not None else None
+	headers = {"User-Agent": USER_AGENT, **headers}
 	request = urllib.request.Request(url, data=data, method=method, headers=headers)
 	try:
 		with urllib.request.urlopen(request, timeout=timeout) as response:

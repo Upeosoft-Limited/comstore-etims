@@ -91,3 +91,20 @@ class TestRelay(unittest.TestCase):
 
 if __name__ == "__main__":
 	unittest.main()
+
+
+class TestHttp(unittest.TestCase):
+	def _sent_request(self):
+		from unittest.mock import MagicMock, patch
+
+		response = MagicMock()
+		response.__enter__.return_value = response
+		response.status, response.read.return_value = 200, b"{}"
+		with patch.object(agent.urllib.request, "urlopen", return_value=response) as urlopen:
+			agent._http("GET", "https://erp.example.com/api/method/ping", {})
+		return urlopen.call_args[0][0]
+
+	def test_it_names_itself(self):
+		"""Cloudflare answers Python's default "Python-urllib" agent with a 403
+		(seen on erp.robeezelectronics.com), so every call carries its own name."""
+		self.assertTrue(self._sent_request().get_header("User-agent", "").startswith("comstore-relay/"))
